@@ -14,7 +14,7 @@ print(rawdata)
 # 数据集转换
 mydata <- mlogit.data(rawdata, shape='wide', choice='choice', varying = 2:16)
 print(mydata)
-write.csv(mydata, file='F://Coding/python/Behance/pylogit/data/demoR.csv')
+# write.csv(mydata, file='F://Coding/python/Behance/pylogit/data/demoR.csv')
 
 # # 构建相应的效用函数并进行回归计算
 # f <- mFormula(choice ~ l + a + b)
