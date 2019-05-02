@@ -18,6 +18,7 @@ print(mydata)
 
 # # 构建相应的效用函数并进行回归计算
 # f <- mFormula(choice ~ l + a + b)
+# print(f)
 # head(model.matrix(f, mydata), 5)
 # res <- mlogit(f, data=mydata)
 # summary(res)
