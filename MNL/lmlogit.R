@@ -1,21 +1,24 @@
 library(nnet)
 library(splines)
-# å†™å…¥è‡ªå˜é‡åŠå› å˜é‡
+
+# Ğ´Èë×Ô±äÁ¿¼°Òò±äÁ¿
 data_color <- read.csv('F://Coding/R/MNL/data/data_color.csv')
 print(data_color)
-# è¿›è¡Œçº¿æ€§å›å½’å¹¶å¼•å…¥è‡ªç„¶ä¸‰æ¬¡æ ·æ¡
+
+# ½øĞĞÏßĞÔ»Ø¹é²¢ÒıÈë×ÔÈ»Èı´ÎÑùÌõ
 ns <- lm(pj ~ ns(l, df=4)+ns(a, df=4)+ns(b, df=4), data=data_color)
 print(ns)
 coef(ns)
 summary(ns)
-# æ•°æ®èŠ‚ç‚¹å†…çš„å…¨è‰²å½©ç©ºé—´æ•°æ®æ„é€ 
-newdata <- expand.grid(l = seq(min(data_color$l), max(data_color$l), 0.1),
-a = seq(min(data_color$a), max(data_color$a), 0.2),
-b = seq(min(data_color$b), max(data_color$b), 0.2))
+
+# Êı¾İ½ÚµãÄÚµÄÈ«É«²Ê¿Õ¼äÊı¾İ¹¹Ôì
+newdata <- expand.grid(l = seq(min(data_color$l), max(data_color$l), 0.1), 
+                       a = seq(min(data_color$a), max(data_color$a), 0.2), 
+                       b = seq(min(data_color$b), max(data_color$b), 0.2))
 print(newdata)
 class(newdata)
-# æ ¹æ®è·å¾—çš„ç³»æ•°è¿›è¡Œè‰²å½©æ•ˆç”¨æ¨å¹¿
-# è®°å½•å„ä¸ªæ ·æ¡åŸºå‡½æ•°å¹¶è®¡ç®—å„æ•ˆç”¨å€¼
+# ¸ù¾İ»ñµÃµÄÏµÊı½øĞĞÉ«²ÊĞ§ÓÃÍÆ¹ã
+# ¼ÇÂ¼¸÷¸öÑùÌõ»ùº¯Êı²¢¼ÆËã¸÷Ğ§ÓÃÖµ
 L <- ns(newdata$l, df=4)
 L <- data.frame(L)
 print(L)
@@ -32,7 +35,5 @@ u = ul+ua+ub
 print(u)
 newdata$u <- u
 print(newdata)
-# è¿›è¡Œçº¿æ€§å›å½’å¹¶å¼•å…¥è‡ªç„¶ä¸‰æ¬¡æ ·æ¡
-ns <- lm(pj ~ ns(l, df=4)+ns(a, df=4)+ns(b, df=4), data=data_color)
-print(ns)
-coef(ns)
+write.csv(newdata, file = 'F://Coding/R/MNL/data/data_color_new2.csv', row.names = FALSE)
+
