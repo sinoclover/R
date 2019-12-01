@@ -8,19 +8,19 @@ print(data_color)
 
 # 构建变量
 ns1 <- ns(data_color$l, df=4)
-ns11 <- predict(ns1, 0.63)
+ns11 <- predict(ns1, 0.31)
 nsDL <- ns1-ns11[1,]
 
 ns2 <- ns(data_color$a, df=4)
-ns22 <- predict(ns2,-0.4252)
+ns22 <- predict(ns2,-0.0157)
 nsDA <- ns2-ns22[1,]
 
 ns3 <- ns(data_color$b, df=4)
-ns33 <- predict(ns3, 0.315)
+ns33 <- predict(ns3, -0.2677)
 nsDB <- ns3-ns33[1,]
 
 # 进行线性回归并引入自然三次样条
-ns <- lm(ln2 ~ ns(l, df=4)+ns(a, df=4)+ns(b, df=4), data=data_color)
+ns <- lm(ln2 ~ nsDL+nsDA+nsDB, data=data_color)
 print(ns)
 coef(ns)
 summary(ns)
@@ -49,5 +49,5 @@ u = ul+ua+ub
 print(u)
 newdata$u <- u
 print(newdata)
-write.csv(newdata, file = 'F://Coding/R/MNL/data/data_color_new3.csv', row.names = FALSE)
+write.csv(newdata, file = 'F://Coding/R/MNL/data_color_pridect.csv', row.names = FALSE)
 
